@@ -19,6 +19,8 @@ let attacksdown = [];
 let attacksup = [];
 let attacksright = [];
 let attacksleft = [];
+let hit1 = [];
+let hit2 = [];
 window.onload = function init(){
     const pl1 = document.getElementById("player1");
     const pl2 = document.getElementById("player2");
@@ -31,13 +33,11 @@ window.onload = function init(){
     const x = setInterval(changePlayers, 1000);
     const y = setInterval(movePlayer1, 100);
     const z = setInterval(movePlayer2, 100);
+    thingthatineedanamefor = setTimeout(endCreation(), 30000);
 }
 function changePlayers(){
     player1.style.backgroundColor = 'rgb(' + red1 + ',' + green1 + '.' + blue1 +')';
     player2.style.backgroundColor = 'rgb(' + red2 + ',' + green2 + '.' + blue2 +')';
-    if (scream == 1){
-        endCreation();
-    }
 }
 function changeGreen(playerNum, right){
     if(right == true){
@@ -118,8 +118,6 @@ function changeBlue(playerNum, right){
     }
 }
 function movePlayer1(){
-    //change number values based on what is the needed values
-    //1-up 2-down 3-left 4-right
     if (plinput1 == 1){
         if(currentc1 != 0){
             array1[currentc1].style.border = "None";
@@ -207,7 +205,6 @@ function movePlayer2(){
         }
     }
 }
-//When recieve a scream
 function endCreation(){
     if(pl1.style.backgroundColor != pl2.style.backgroundColor){
         if(pl1.style.backgroundColor == "rgb(0, 0, 0)"){
@@ -251,42 +248,54 @@ function endCreation(){
     }
 }
 function gameStart(){
+    pl1.style.top = 10;
+    pl1.style.left = 10;
+    pl2.style.bottom = 10;
+    pl2.style.right = 10;
     setStage();
 }
 function shoot(playerNum, direction){
     if(playerNum == player1){
         let ack = document.getElementById("attackp1");
         clone = ack.cloneNode(true);
-        document.body.appendChild(clone);
         if(direction == 1){
             attacksup.push(clone);
+            hit2.push(clone);
         }
         else if(direction == 2){
             attacksdown.push(clone);
+            hit2.push(clone);
         }
         else if(direction == 3){
             attacksleft.push(clone);
+            hit2.push(clone);
         }
         else if(direction == 4){
             attacksright.push(clone);
+            hit2.push(clone);
         }
+        document.body.appendChild(clone);
     }
     else{
         let ack = document.getElementById("attackp2");
         clone = ack.cloneNode(true);
-        document.body.appendChild(clone);
         if(direction == 1){
             attacksup.push(clone);
+            hit1.push(clone);
         }
         else if(direction == 2){
             attacksdown.push(clone);
+            hit1.push(clone);
         }
         else if(direction == 3){
             attacksleft.push(clone);
+            hit1.push(clone);
         }
         else if(direction == 4){
             attacksright.push(clone);
-        }  
+            hit1.push(clone);
+        }
+        document.body.appendChild(clone);  
     }
 }
 function itsRaining(){
@@ -295,8 +304,10 @@ function itsRaining(){
     clone = aaaaa.cloneNode(true);
     clone.style.left = pos + "%";
     clone.style.top = "0px";
-    document.body.appendChild(clone);
     attacksdown.push(clone);
+    hit2.push(clone);
+    hit1.push(clone);
+    document.body.appendChild(clone);
 }
 function setStage(){
     p1shoot = setInterval(shoot(pl1, p1direction), 1000);
@@ -304,32 +315,64 @@ function setStage(){
     frames = setInterval(updateFrame(), 1000);
     checkMissiles = setInterval(die(), 1000);
     checkDamage = setInterval(oop(), 1000);
+    checkCollision = setInterval(oops(), 1000);
+}
+function oops(){
+    for(i=0; i<hit1.length; i++){
+        if(dotheyCollide(hit1[i], pl1) == true){
+            p1lives = p1lives - 1;
+        }
+    }
+    for(i=0; i<hit2.length; i++){
+        if(dotheyCollide(hit2[i],pl1) == true){
+            p2lives = p2lives - 1;
+        }
+    }
+}
+function dotheyCollide(thing1, thing2) {
+    thing1.offsetBottom = thing1.offsetTop + thing1.offsetHeight;
+    thing1.offsetRight = thing1.offsetLeft + thing1.offsetWidth;
+    thing2.offsetBottom = thing2.offsetTop + thing2.offsetHeight;
+    thing2.offsetRight = thing2.offsetLeft + thing2.offsetWidth;
+
+    return !((thing1.offsetBottom < thing2.offsetTop) ||
+             (thing1.offsetTop > thing2.offsetBottom) ||
+             (thing1.offsetRight < thing2.offsetLeft) ||
+             (thing1.offsetLeft > thing2.offsetRight))
 }
 function oop(){
     if(pl1.style.top == 0){
         p1lives = p1lives - 1;
+        pl1.style.top = pl1.style.top + 10;
     }
     else if(pl1.style.left == 0){
         p1lives = p1lives - 1;
+        pl1.style.left = pl1.style.left + 10;
     }
     else if(pl1.style.bottom == 0){
         p1lives = p1lives - 1;
+        pl1.style.bottom = pl1.style.bottom + 10;
     }
     else if(pl1.style.right == 0){
         p1lives = p1lives -1;
+        pl1.style.right = pl1.style.right + 10;
     }
 
     if(pl2.style.top == 0){
         p2lives = p2lives - 1;
+        pl2.style.top = pl2.style.top + 10;
     }
     else if(pl2.style.left == 0){
         p2lives = p2lives - 1;
+        pl2.style.left = pl2.style.left + 10;
     }
     else if(pl2.style.bottom == 0){
         p2lives = p2lives - 1;
+        pl2.style.bottom = pl2.style.bottom + 10;
     }
     else if(pl2.style.right == 0){
         p2lives = p2lives -1;
+        pl2.style.right = pl2.style.right + 10;
     }
 }
 function updateFrame(){
