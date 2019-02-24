@@ -36,7 +36,7 @@ window.onload = function init(){
     thingthatineedanamefor = setTimeout(endCreation(), 30000);
     const whynot = setInterval(checkKeyboard(), 100);
 }
-checkKeyboard(){
+function checkKeyboard(){
 
 }
 function changePlayers(){
