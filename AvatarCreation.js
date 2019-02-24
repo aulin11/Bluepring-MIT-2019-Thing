@@ -251,9 +251,7 @@ function endCreation(){
     }
 }
 function gameStart(){
-    document.getElementById("TextOnScreen").innerHTML = "Player 1, choose your stage."
-    stageNum = plinput1;
-    runningoutofnames = setInterval(setStage(), 1000);
+    setStage();
 }
 function shoot(playerNum, direction){
     if(playerNum == player1){
@@ -301,23 +299,11 @@ function itsRaining(){
     attacksdown.push(clone);
 }
 function setStage(){
-    if(stageNum == 1){
-    }
-    else if(stageNum == 2){
-    }
-    else if(stageNum == 3){
-    }
-    else if(stageNum == 4){
-        
-    }
-    if(stageNum != null){
-    clearInterval(runningoutofnames);
     p1shoot = setInterval(shoot(pl1, p1direction), 1000);
     p2shoot = setInterval(shoot(pl2, p2direction), 1000);
     frames = setInterval(updateFrame(), 1000);
     checkMissiles = setInterval(die(), 1000);
     checkDamage = setInterval(oop(), 1000);
-    }
 }
 function oop(){
     if(pl1.style.top == 0){
@@ -401,5 +387,10 @@ function die(){
     }
 }
 function GameOver(){
-
+    clearInterval(p1shoot);
+    clearInterval(p2shoot);
+    clearInterval(frames);
+    clearInterval(checkMissiles);
+    clearInterval(checkDamage);
+    document.getElementById("TextOnScreen").innerHTML = "GAME OVER";
 }
