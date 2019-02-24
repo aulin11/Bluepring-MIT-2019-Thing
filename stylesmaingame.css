@@ -1,3 +1,11 @@
 .player{
-    
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    display: block;
+}
+#player1{
+}
+#player2{
+
 }
