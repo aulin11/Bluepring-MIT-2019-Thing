@@ -1,3 +1,4 @@
+//1-up 2-down 3-left 4-right
 let red1 = 000;
 let red2 = 000;
 let green1 = 000;
@@ -9,6 +10,15 @@ let plinput2 = null;
 let currentc1 = null;
 let currentc2 = null;
 let scream = 0;
+let p1direction = 4;
+let p2direction = 3;
+let stageNum = null;
+let p1lives = 5;
+let p2lives = 5;
+let attacksdown = [];
+let attacksup = [];
+let attacksright = [];
+let attacksleft = [];
 window.onload = function init(){
     const pl1 = document.getElementById("player1");
     const pl2 = document.getElementById("player2");
@@ -222,6 +232,7 @@ function endCreation(){
         clearInterval(z);
         currentc1 = null;
         currentc2 = null;
+        gameStart()
     }
     else{
         if(blue2 + 10 < 255){
@@ -236,5 +247,87 @@ function endCreation(){
         clearInterval(z);
         currentc1 = null;
         currentc2 = null;
+        gameStart()
+    }
+}
+function gameStart(){
+    document.getElementById("TextOnScreen").innerHTML = "Player 1, choose your stage."
+    stageNum = plinput1;
+    runningoutofnames = setInterval(setStage(), 1000);
+}
+function shoot(playerNum, direction){
+    if(playerNum == player1){
+        let ack = document.getElementById("attackp1");
+        clone = ack.cloneNode(true);
+        document.body.appendChild(clone);
+        if(direction == 1){
+            attacksup.push(clone);
+        }
+        else if(direction == 2){
+            attacksdown.push(clone);
+        }
+        else if(direction == 3){
+            attacksleft.push(clone);
+        }
+        else if(direction == 4){
+            attacksright.push(clone);
+        }
+    }
+    else{
+        let ack = document.getElementById("attackp2");
+        clone = ack.cloneNode(true);
+        document.body.appendChild(clone);
+        if(direction == 1){
+            attacksup.push(clone);
+        }
+        else if(direction == 2){
+            attacksdown.push(clone);
+        }
+        else if(direction == 3){
+            attacksleft.push(clone);
+        }
+        else if(direction == 4){
+            attacksright.push(clone);
+        }  
+    }
+}
+function itsRaining(){
+
+}
+function setStage(){
+    if(stageNum == 1){
+    }
+    else if(stageNum == 2){
+    }
+    else if(stageNum == 3){
+    }
+    else if(stageNum == 4){
+        
+    }
+    if(stageNum != null){
+    clearInterval(runningoutofnames);
+    p1shoot = setInterval(shoot(pl1, p1direction), 1000);
+    p2shoot = setInerval(shoot(pl2, p2direction), 1000);
+    frames = setInterval(updateFrame(), 1000);
+    }
+}
+function updateFrame(){
+    for(i=0; i<attacksup.length; i++){
+        attacksup[i].style.top = attacksup[i].style.top + "10";
+    }
+    for(i=0; i<attacksdown.length; i++){
+        attacksdown[i].style.down = attacksdown[i].style.top - "10";
+    }
+    for(i=0; i<attacksleft.length; i++){
+        attacksleft[i].style.left = attacksleft[i].style.left + "10";
+    }
+    for(i=0; i<attacksright.length; i++){
+        attacksright[i].style.left = attacksright[i].style.left - "10";
+    }
+    if(pl1input){
+
+    }
+    if(){
+
     }
 }

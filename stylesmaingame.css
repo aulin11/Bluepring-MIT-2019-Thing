@@ -90,3 +90,23 @@
 #rright{
     right: 10%;
 }
+#TextOnScreen{
+    font-size: 20px;
+    font-family: "Courier New", Courier, monospace;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+}
+.platform{
+    height: 30px;
+    color: rgb(120, 120, 120);
+}
+.attack{
+    height: 10px;
+    width: 10px;
+    display: block;
+    position: fixed;
+    background-color: black;
+    border-radius: 50%;
+    display: none;
+}
