@@ -208,6 +208,14 @@ function endCreation(){
             blue2 = blue2 + 10;
             player2.style.backgroundColor = 'rgb(' + red2 + ',' + green2 + '.' + blue2 +')';
         }
+        if(pl1.style.backgroundColor == "rgb(120, 120, 120)"){
+            blue1 = blue1 + 10;
+            player1.style.backgroundColor = 'rgb(' + red1 + ',' + green1 + '.' + blue1 +')';
+        }
+        if(pl2.style.backgroundColor == "rgb(120, 120, 120)"){
+            blue2 = blue2 + 10;
+            player2.style.backgroundColor = 'rgb(' + red2 + ',' + green2 + '.' + blue2 +')';
+        }
         document.getElementsByClassName("chooseYourColor").display = "none";
         clearInterval(x);
         clearInterval(y);
