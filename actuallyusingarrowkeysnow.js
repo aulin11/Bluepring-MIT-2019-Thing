@@ -21,7 +21,7 @@ let attacksright = [];
 let attacksleft = [];
 let hit1 = [];
 let hit2 = [];
-const newvar = onkeypress.keyCode;
+let newvar = null;
 window.onload = function init(){
     const pl1 = document.getElementById("player1");
     const pl2 = document.getElementById("player2");
@@ -34,9 +34,8 @@ window.onload = function init(){
     const x = setInterval(changePlayers, 1000);
     const y = setInterval(movePlayer1, 100);
     const z = setInterval(movePlayer2, 100);
-    thingthatineedanamefor = setTimeout(endCreation(), 30000);
-    const whynot = setInterval(checkKeyboard(), 100);
 }
+window.onkeydown = function() {checkKeyboard()};
 function checkKeyboard(){
     if(newvar == 38){
         pl1input = 1;
@@ -67,6 +66,9 @@ function checkKeyboard(){
     }
     else{
         pl2input = null;
+    }
+    if(newvar == 13){
+        endCreation();
     }
 }
 function changePlayers(){
