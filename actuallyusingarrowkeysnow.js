@@ -271,7 +271,7 @@ function shoot(playerNum, direction){
         let ack = document.getElementById("attackp1");
         clone = ack.cloneNode(true);
         clone.style.display = 'block';
-        //clone.style.backgroundColor = 
+        clone.style.backgroundColor = pl1.style.backgroundColor;
         if(p1direction == 1){
             attacksup.push(clone);
             hit2.push(clone);
@@ -294,6 +294,7 @@ function shoot(playerNum, direction){
         let ack = document.getElementById("attackp2");
         clone = ack.cloneNode(true);
         clone.style.display = 'block';
+        clone.style.backgroundColor = pl2.style.backgroundColor;
         if(p2direction == 1){
             attacksup.push(clone);
             hit1.push(clone);
