@@ -32,24 +32,24 @@ function changePlayers(){
 function changeGreen(playerNum, right){
     if(right == true){
         if(playerNum == player1){
-            if(green1 < 255){
+            if(green1 + 10 < 255){
                 green1 = green1 + 10;
             }
         }
         else{
-            if(green2 < 255){
+            if(green2 + 10< 255){
                 green2 = green2 + 10;
             }
         }
     }
     else{
         if(playerNum == player1){
-            if(green1 > 0){
+            if(green1 - 10> 0){
                 green1 = green1 - 10;
             }
         }
         else{
-            if(green2 > 0){
+            if(green2 - 10 > 0){
                 green2 = green2 - 10;
             }
         }
@@ -58,24 +58,24 @@ function changeGreen(playerNum, right){
 function changeRed(playerNum, right){
     if(right == true){
         if(playerNum == player1){
-            if(red1 < 255){
+            if(red1 + 10 < 255){
                 red1 = red1 + 10;
             }
         }
         else{
-            if(red2 < 255){
+            if(red2 + 10 < 255){
                 red2 = red2 + 10;
             }
         }
     }
     else{
         if(playerNum == player1){
-            if(red1 > 0){
+            if(red1 - 10 > 0){
                 red1 = red1 - 10;
             }
         }
         else{
-            if(green2 > 0){
+            if(green2 - 10 > 0){
                 red2 = red2 - 10;
             }
         }
@@ -84,24 +84,24 @@ function changeRed(playerNum, right){
 function changeBlue(playerNum, right){
     if(right == true){
         if(playerNum == player1){
-            if(blue1 < 255){
+            if(blue1 + 10< 255){
                 blue1 = blue1 + 10;
             }
         }
         else{
-            if(blue2 < 255){
+            if(blue2 + 10< 255){
                 blue2 = blue2 + 10;
             }
         }
     }
     else{
         if(playerNum == player1){
-            if(blue2 > 0){
+            if(blue2 - 10> 0){
                 blue2 = blue2 - 10;
             }
         }
         else{
-            if(green2 > 0){
+            if(blue2 - 10 > 0){
                 blue2 = blue2 - 10;
             }
         }
@@ -199,10 +199,34 @@ function movePlayer2(){
 }
 //When recieve a scream
 function endCreation(){
-    document.getElementsByClassName("chooseYourColor").display = "none";
-    clearInterval(x);
-    clearInterval(y);
-    clearInterval(z);
-    currentc1 = null;
-    currentc2 = null;
+    if(pl1.style.backgroundColor != pl2.style.backgroundColor){
+        if(pl1.style.backgroundColor == "rgb(0, 0, 0)"){
+            blue1 = blue1 + 10;
+            player1.style.backgroundColor = 'rgb(' + red1 + ',' + green1 + '.' + blue1 +')';
+        }
+        if(pl2.style.backgroundColor == "rgb(0, 0, 0)"){
+            blue2 = blue2 + 10;
+            player2.style.backgroundColor = 'rgb(' + red2 + ',' + green2 + '.' + blue2 +')';
+        }
+        document.getElementsByClassName("chooseYourColor").display = "none";
+        clearInterval(x);
+        clearInterval(y);
+        clearInterval(z);
+        currentc1 = null;
+        currentc2 = null;
+    }
+    else{
+        if(blue2 + 10 < 255){
+            blue2 = blue2 + 10;
+        }
+        else{
+            blue2 = blue2 - 10;
+        }
+        player2.style.backgroundColor = 'rgb(' + red2 + ',' + green2 + '.' + blue2 +')';
+        clearInterval(x);
+        clearInterval(y);
+        clearInterval(z);
+        currentc1 = null;
+        currentc2 = null;
+    }
 }
