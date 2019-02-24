@@ -292,7 +292,13 @@ function shoot(playerNum, direction){
     }
 }
 function itsRaining(){
-
+    let pos = Math.floor(Math.random() * (100));
+    let aaaaa = document.getElementById("itsraining");
+    clone = aaaaa.cloneNode(true);
+    clone.style.left = pos + "%";
+    clone.style.top = "0px";
+    document.body.appendChild(clone);
+    attacksdown.push(clone);
 }
 function setStage(){
     if(stageNum == 1){
@@ -307,8 +313,37 @@ function setStage(){
     if(stageNum != null){
     clearInterval(runningoutofnames);
     p1shoot = setInterval(shoot(pl1, p1direction), 1000);
-    p2shoot = setInerval(shoot(pl2, p2direction), 1000);
+    p2shoot = setInterval(shoot(pl2, p2direction), 1000);
     frames = setInterval(updateFrame(), 1000);
+    checkMissiles = setInterval(die(), 1000);
+    checkDamage = setInterval(oop(), 1000);
+    }
+}
+function oop(){
+    if(pl1.style.top == 0){
+        p1lives = p1lives - 1;
+    }
+    else if(pl1.style.left == 0){
+        p1lives = p1lives - 1;
+    }
+    else if(pl1.style.bottom == 0){
+        p1lives = p1lives - 1;
+    }
+    else if(pl1.style.right == 0){
+        p1lives = p1lives -1;
+    }
+
+    if(pl2.style.top == 0){
+        p2lives = p2lives - 1;
+    }
+    else if(pl2.style.left == 0){
+        p2lives = p2lives - 1;
+    }
+    else if(pl2.style.bottom == 0){
+        p2lives = p2lives - 1;
+    }
+    else if(pl2.style.right == 0){
+        p2lives = p2lives -1;
     }
 }
 function updateFrame(){
@@ -325,21 +360,46 @@ function updateFrame(){
         attacksright[i].style.left = attacksright[i].style.left + "10";
     }
     if(pl1input == 1){
-pl1.style.top = pl1.style.top - "10"
+        pl1.style.top = pl1.style.top - "10"
     }
-      if(pl1input == 2){
-pl1.style.top = pl1.style.top + "10"
+    if(pl1input == 2){
+        pl1.style.top = pl1.style.top + "10"
+    }
+    if(pl1input == 3){
+        pl1.style.top = pl1.style.top - "10"
+    }
+    if(pl1input == 4){
+        pl1.style.top = pl1.style.top + "10"
+    }
+    if(p1lives == 0){
+        GameOver();
+    }
+    if(p2lives == 0){
+        GameOver();
+    }
+}
+function die(){
+    for(i=0; i<attacksup.length; i++){
+        if(attacksup[i].style.bottom == 0){
+            attacksup.style.display = "none";
+        }
+    }
+    for(i=0; i<attacksdown.length; i++){
+        if(attacksdown[i].style.top == 0){
+            attacksdown.style.display = "none";
+        }
+    }
+    for(i=0; i<attacksleft.length; i++){
+        if(attacksleft[i].style.right == 0){
+            attacksleft.style.display = "none";
+        }
+    }
+    for(i=0; i<attacksright.length; i++){
+        if(attacksright[i].style.left == 0){
+            attacksright.style.display = "none";
+        }
+    }
+}
+function GameOver(){
 
-    }
-      if(pl1input == 3){
-pl1.style.top = pl1.style.top - "10"
-
-    }
-      if(pl1input == 4){
-pl1.style.top = pl1.style.top + "10"
-
-    }
-    
-    
-    
 }
