@@ -7,6 +7,14 @@
     background-color: red;
     border-radius: 50%;
 }
+#player1{
+    top: 20%;
+    left: 23%;
+}
+#player2{
+    top:20%;
+    left: 73%
+}
 .chooseYourColor{
     height: 100%;
     width: 50%;
@@ -37,4 +45,49 @@
     border-left-width: 2px;
     border-left-style: inset;
 }
-//You can start under here
+.green{
+    width: 100px;
+    height: 50px;
+    display: block;
+    z-index: 11;
+    position: absolute;
+    top: 60%;
+    background-color: green;
+}
+.red{
+    width: 100px;
+    height: 50px;
+    display: block;
+    z-index: 11;
+    position: absolute;
+    top: 50%;
+    background-color: red;
+}
+.blue{
+    width: 100px;
+    height: 50px;
+    display: block;
+    z-index: 11;
+    position: absolute;
+    top: 70%;
+    background-color: blue;
+}
+#gleft{
+    left: 10%;
+}
+#bleft{
+    left: 10%;
+}
+#rleft{
+    left: 10%;
+}
+#gright{
+    right: 10%;
+}
+#bright{
+    right: 10%;
+}
+#rright{
+    right: 10%;
+}
+//Copy and paste under here
