@@ -313,21 +313,33 @@ function setStage(){
 }
 function updateFrame(){
     for(i=0; i<attacksup.length; i++){
-        attacksup[i].style.top = attacksup[i].style.top + "10";
+        attacksup[i].style.top = attacksup[i].style.top - "10";
     }
     for(i=0; i<attacksdown.length; i++){
-        attacksdown[i].style.down = attacksdown[i].style.top - "10";
+        attacksdown[i].style.down = attacksdown[i].style.top + "10";
     }
     for(i=0; i<attacksleft.length; i++){
-        attacksleft[i].style.left = attacksleft[i].style.left + "10";
+        attacksleft[i].style.left = attacksleft[i].style.left - "10";
     }
     for(i=0; i<attacksright.length; i++){
-        attacksright[i].style.left = attacksright[i].style.left - "10";
+        attacksright[i].style.left = attacksright[i].style.left + "10";
     }
-    if(pl1input){
+    if(pl1input == 1){
+pl1.style.top = pl1.style.top - "10"
+    }
+      if(pl1input == 2){
+pl1.style.top = pl1.style.top + "10"
 
     }
-    if(){
+      if(pl1input == 3){
+pl1.style.top = pl1.style.top - "10"
 
     }
+      if(pl1input == 4){
+pl1.style.top = pl1.style.top + "10"
+
+    }
+    
+    
+    
 }
